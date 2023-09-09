@@ -90,4 +90,4 @@ var screepy = {
     },
 };
 
-export default screepy;
+module.exports = screepy;
