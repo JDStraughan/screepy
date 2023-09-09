@@ -9,10 +9,15 @@ var screepyFactory = {
 
         if (creepies.length < max) {
             var newName = role + Game.time;
-            console.log("Spawning new" + role + ": " + newName);
-            Game.spawns[spawn].spawnCreep(body, newName, {
-                memory: { role: role },
+            const spawnResult = spawn.spawnCreep(body, newName, {
+                dryRun: true,
             });
+            if (spawnResult === OK) {
+                console.log("Spawning new" + role + ": " + newName);
+                Game.spawns[spawn].spawnCreep(body, newName, {
+                    memory: { role: role },
+                });
+            }
         }
 
         if (Game.spawns[spawn].spawning) {
@@ -40,10 +45,6 @@ var screepyFactory = {
             if (result === OK) {
                 console.log(
                     `Construction site created at (${step.x},${step.y})`
-                );
-            } else {
-                console.log(
-                    `Error creating construction site at (${step.x},${step.y}): ${result}`
                 );
             }
         }

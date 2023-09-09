@@ -98,7 +98,7 @@ var screepy = {
     },
 
     // Main Road
-    constructMainRoad: function () {
+    constructMainRoads: function () {
         screepyFactory.constructRoadFromSpawnToController(this.spawnName);
     },
 

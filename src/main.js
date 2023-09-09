@@ -11,7 +11,7 @@ module.exports.loop = function () {
     // screepy.manageDefenses();
 
     // Build Roads (TODO - FIX THIS SHIT)
-    screepy.constructMainRoad();
+    screepy.constructMainRoads();
 
     // Run the Queue
     screepy.runQueue();
