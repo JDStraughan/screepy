@@ -4,7 +4,7 @@ var roleUpgrader = require("role.upgrader");
 
 var screepy = {
     // Set Prefix for Spawns
-    let spawnPrefix = "ScreepyDoobieDoo-",
+    spawnPrefix: "ScreepyDoobieDoo-",
 
     // Initialize Screepy
     init: function (spawnPrefix) {
