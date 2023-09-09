@@ -26,6 +26,11 @@ let screepyQueue = {
         }
     },
     run: function () {
+        // Don't run if empty
+        if (this.queue.length == 0) {
+            console.log("Queue is empty");
+            return;
+        }
         console.log("Running queue: " + this.queue);
         for (var i = 0; i < this.queue.length; i++) {
             let item = this.queue[i];
