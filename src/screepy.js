@@ -52,22 +52,18 @@ var screepy = {
         if (harvesters.length < 2) {
             var newName = "Harvester" + Game.time;
             console.log("Spawning new harvester: " + newName);
-            Game.spawns["SpawnyMcSpawnerson"].spawnCreep(
-                [WORK, CARRY, MOVE],
-                newName,
-                {
-                    memory: { role: "harvester" },
-                }
-            );
+            Game.spawns[spawnPrefix].spawnCreep([WORK, CARRY, MOVE], newName, {
+                memory: { role: "harvester" },
+            });
         }
 
-        if (Game.spawns["SpawnyMcSpawnerson"].spawning) {
+        if (Game.spawns[spawnPrefix].spawning) {
             var spawningCreep =
-                Game.creeps[Game.spawns["SpawnyMcSpawnerson"].spawning.name];
-            Game.spawns["SpawnyMcSpawnerson"].room.visual.text(
+                Game.creeps[Game.spawns[spawnPrefix].spawning.name];
+            Game.spawns[spawnPrefix].room.visual.text(
                 "🛠️" + spawningCreep.memory.role,
-                Game.spawns["SpawnyMcSpawnerson"].pos.x + 1,
-                Game.spawns["SpawnyMcSpawnerson"].pos.y,
+                Game.spawns[spawnPrefix].pos.x + 1,
+                Game.spawns[spawnPrefix].pos.y,
                 { align: "left", opacity: 0.8 }
             );
         }

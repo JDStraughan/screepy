@@ -2,7 +2,7 @@ var screepy = require("screepy");
 
 module.exports.loop = function () {
     // Initialize screepy
-    screepy.init((spawnPrefix = "SpawnyMcSpawnface-"));
+    screepy.init((spawnPrefix = "SpawnyMcSpawnerson"));
 
     // Manage existing assets
     screepy.manageCreeps();
