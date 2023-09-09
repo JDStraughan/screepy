@@ -9,7 +9,7 @@ var screepyFactory = {
 
         if (creepies.length < max) {
             var newName = role + Game.time;
-            const spawnResult = spawn.spawnCreep(body, newName, {
+            const spawnResult = Game.spawns[spawn].spawnCreep(body, newName, {
                 dryRun: true,
             });
             if (spawnResult === OK) {
