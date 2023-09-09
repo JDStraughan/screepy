@@ -8,10 +8,9 @@ module.exports.loop = function () {
     screepy.manageCreeps();
     screepy.manageTowers();
 
-    // screepy.towers.manage();
-    // screepy.creeps.manage();
-    // screepy.spawns.manage();
+    // Run the Queue
+    screepy.runQueue();
 
-    // Spawn new assets
-    screepy.spawnCreeps();
+    // Run them creeps
+    screepy.runCreeps();
 };

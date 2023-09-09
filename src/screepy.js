@@ -1,12 +1,15 @@
 var roleBuilder = require("role.builder");
 var roleHarvester = require("role.harvester");
 var roleUpgrader = require("role.upgrader");
-var screepyFactory = require("screepy.factory");
+let screepyQueue = require("screepy.queue");
 
 var screepy = {
     // Set Prefix for Spawns
     spawnName: "ScreepyDoobieDoo-",
+    creepBuildOrder: ["harvester", "upgrader", "builder"],
     maxHarvesters: 2,
+    maxUpgraders: 2,
+    maxBuilders: 2,
 
     // Initialize Screepy
     init: function (spawnName) {
@@ -45,50 +48,40 @@ var screepy = {
 
     // Manage them Creeps, yo
     manageCreeps: function () {
-        // Set Par Levels
+        /*  
+            Set Par Levels
+        */
+
         // Harvesters
-        screepyFactory.parLevelCreeps(
+        screepyQueue.add(
+            "setParLevel",
             "harvester",
             this.spawnName,
             [WORK, CARRY, MOVE],
-            2
+            this.maxHarvesters
         );
+
         // Upgraders
-        screepyFactory.parLevelCreeps(
+        screepyQueue.add(
+            "setParLevel",
             "upgrader",
             this.spawnName,
             [WORK, CARRY, MOVE],
-            2
+            this.maxUpgraders
         );
 
-        // var harvesters = _.filter(
-        //     Game.creeps,
-        //     (creep) => creep.memory.role == "harvester"
-        // );
-        // console.log("Harvesters: " + harvesters.length);
-
-        // if (harvesters.length < harvesters.maxHarvesters) {
-        //     var newName = "Harvester" + Game.time;
-        //     console.log("Spawning new harvester: " + newName);
-        //     Game.spawns[spawnName].spawnCreep([WORK, CARRY, MOVE], newName, {
-        //         memory: { role: "harvester" },
-        //     });
-        // }
-
-        // if (Game.spawns[spawnName].spawning) {
-        //     var spawningCreep =
-        //         Game.creeps[Game.spawns[spawnName].spawning.name];
-        //     Game.spawns[spawnName].room.visual.text(
-        //         "🛠️" + spawningCreep.memory.role,
-        //         Game.spawns[spawnName].pos.x + 1,
-        //         Game.spawns[spawnName].pos.y,
-        //         { align: "left", opacity: 0.8 }
-        //     );
-        // }
+        // Builders
+        screepyQueue.add(
+            "parlevel",
+            "builder",
+            this.spawnName,
+            [WORK, CARRY, MOVE],
+            this.maxBuilders
+        );
     },
 
-    // Spawn dem Creeps, oh yeah!
-    spawnCreeps: function () {
+    // Run dem Creeps, oh yeah!
+    runCreeps: function () {
         for (var name in Game.creeps) {
             var creep = Game.creeps[name];
             if (creep.memory.role == "harvester") {
@@ -101,6 +94,11 @@ var screepy = {
                 roleBuilder.run(creep);
             }
         }
+    },
+
+    // Run the Queue
+    runQueue: function () {
+        screepyQueue.run();
     },
 };
 
