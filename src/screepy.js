@@ -2,14 +2,15 @@ var roleBuilder = require("role.builder");
 var roleHarvester = require("role.harvester");
 var roleUpgrader = require("role.upgrader");
 let screepyQueue = require("screepy.queue");
+const screepyFactory = require("./screepy.factory");
 
 var screepy = {
     // Set Prefix for Spawns
     spawnName: "ScreepyDoobieDoo-",
     creepBuildOrder: ["harvester", "upgrader", "builder"],
     maxHarvesters: 2,
-    maxUpgraders: 2,
-    maxBuilders: 2,
+    maxUpgraders: 5,
+    maxBuilders: 5,
 
     // Initialize Screepy
     init: function (spawnName) {
@@ -94,6 +95,11 @@ var screepy = {
                 roleBuilder.run(creep);
             }
         }
+    },
+
+    // Main Road
+    constructMainRoad: function () {
+        screepyFactory.constructRoadFromSpawnToController(this.spawnName);
     },
 
     // Run the Queue

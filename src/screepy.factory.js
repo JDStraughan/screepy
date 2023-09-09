@@ -25,6 +25,29 @@ var screepyFactory = {
             );
         }
     },
+    constructRoadFromSpawnToController: function (spawnName) {
+        const spawn = Game.spawns[spawnName];
+        const controller = spawn.room.controller;
+        const path = spawn.pos.findPathTo(controller.pos, {
+            ignoreCreeps: true,
+        });
+        for (const step of path) {
+            const result = spawn.room.createConstructionSite(
+                step.x,
+                step.y,
+                STRUCTURE_ROAD
+            );
+            if (result === OK) {
+                console.log(
+                    `Construction site created at (${step.x},${step.y})`
+                );
+            } else {
+                console.log(
+                    `Error creating construction site at (${step.x},${step.y}): ${result}`
+                );
+            }
+        }
+    },
 };
 
 module.exports = screepyFactory;

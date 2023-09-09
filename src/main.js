@@ -6,7 +6,12 @@ module.exports.loop = function () {
 
     // Manage existing assets
     screepy.manageCreeps();
-    screepy.manageTowers();
+
+    // Manage Defenses
+    screepy.manageDefenses();
+
+    // Build Roads (TODO - FIX THIS SHIT)
+    screepy.constructMainRoad();
 
     // Run the Queue
     screepy.runQueue();
