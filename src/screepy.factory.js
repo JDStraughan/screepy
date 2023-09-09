@@ -1,12 +1,13 @@
 var screepyFactory = {
     parLevelCreeps: function (role, spawn, body, max) {
+        console.log("Par Leveling: " + role + "s to maximum level of " + max);
         var creepies = _.filter(
             Game.creeps,
             (creep) => creep.memory.role == role
         );
         console.log(role + "s: " + creepies.length);
 
-        if (creepies.length < creepies.max) {
+        if (creepies.length < max) {
             var newName = role + Game.time;
             console.log("Spawning new" + role + ": " + newName);
             Game.spawns[spawn].spawnCreep(body, newName, {
