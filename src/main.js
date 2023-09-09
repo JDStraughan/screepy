@@ -8,7 +8,7 @@ module.exports.loop = function () {
     screepy.manageCreeps();
 
     // Manage Defenses
-    screepy.manageDefenses();
+    // screepy.manageDefenses();
 
     // Build Roads (TODO - FIX THIS SHIT)
     screepy.constructMainRoad();
