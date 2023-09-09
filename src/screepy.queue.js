@@ -42,6 +42,8 @@ let screepyQueue = {
                     console.log("Unknown queue type: " + item.type);
             }
         }
+        // Clear the queue
+        this.clear();
     },
     clear: function () {
         this.queue = [];

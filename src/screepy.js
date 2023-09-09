@@ -72,7 +72,7 @@ var screepy = {
 
         // Builders
         screepyQueue.add(
-            "parlevel",
+            "setParLevel",
             "builder",
             this.spawnName,
             [WORK, CARRY, MOVE],
