@@ -1,6 +1,8 @@
 var screepy = require("screepy");
 
 module.exports.loop = function () {
+    console.log("=====START TICK=====");
+
     // Initialize screepy
     screepy.init((spawnName = "SpawnyMcSpawnerson"));
 
@@ -18,4 +20,6 @@ module.exports.loop = function () {
 
     // Run them creeps
     screepy.runCreeps();
+
+    console.log("=====END TICK=====");
 };
